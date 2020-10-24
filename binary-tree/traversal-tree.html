@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Traversal binary tree</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="traversal-binary-tree">Traversal binary tree</h1>
+<p align="center">
+  <img src="file:///e:\DATA\coding\algo-review\binary-tree\img\binary-tree.png" />
+</p>
+<h2 id="3-traversal-ways">3 traversal ways</h2>
+<ul>
+<li>Pre-order traversal binary tree (Root - Left - Right): F, B, A, D, C, E, G, I, H</li>
+<li>Inorder traversal binary tree (Left - Root - Right): A, B, C, D, E, F, G, H, I</li>
+<li>Postorder traversal binary tree (Left - Right - Root): A, C, E, D, B, H, I, G, F</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<p>(Source: <a href="https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/992/">traverse-a-tree</a>). Also, post-order is widely use in mathematical expression. It is easier to write a program to parse a post-order expression. Here is an example:</p>
+<p align="center">
+  <img src="file:///e:\DATA\coding\algo-review\binary-tree\img\math-expression.png" />
+</p>
+<p>You can easily figure out the original expression using the inorder traversal. However, it is not easy for a program to handle this expression since you have to check the priorities of operations.</p>
+<p>If you handle this tree in postorder, you can easily handle the expression using a stack. Each time when you meet a operator, you can just pop 2 elements from the stack, calculate the result and push the result back into the stack.</p>
+<h2 id="code-implementation">Code implementation</h2>
+<pre><code class="language-js"><div><span class="hljs-comment">/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */</span>
+
+<span class="hljs-comment">// Root - Left - Right</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preorderTraversal</span>(<span class="hljs-params">root: TreeNode | null</span>): <span class="hljs-title">number</span>[] </span>{
+    <span class="hljs-keyword">if</span> (root === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> []
+    <span class="hljs-keyword">return</span> [root.val, ...preorderTraversal(root.left), ...preorderTraversal(root.right)]
+};
+
+<span class="hljs-comment">// Left - Root- Right</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preorderTraversal</span>(<span class="hljs-params">root: TreeNode | null</span>): <span class="hljs-title">number</span>[] </span>{
+    <span class="hljs-keyword">if</span> (root === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> []
+    <span class="hljs-keyword">return</span> [...preorderTraversal(root.left), root.val, ...preorderTraversal(root.right)]
+};
+
+<span class="hljs-comment">// Root - Left - Right</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preorderTraversal</span>(<span class="hljs-params">root: TreeNode | null</span>): <span class="hljs-title">number</span>[] </span>{
+    <span class="hljs-keyword">if</span> (root === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> []
+    <span class="hljs-keyword">return</span> [...preorderTraversal(root.left), ...preorderTraversal(root.right), root.val]
+};
+</div></code></pre>
+
+    </body>
+    </html>
