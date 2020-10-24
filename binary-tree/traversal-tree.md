@@ -44,14 +44,14 @@ function preorderTraversal(root: TreeNode | null): number[] {
 };
 
 // Left - Root- Right
-function preorderTraversal(root: TreeNode | null): number[] {
+function inorderTraversal(root: TreeNode | null): number[] {
     if (root === null) return []
-    return [...preorderTraversal(root.left), root.val, ...preorderTraversal(root.right)]
+    return [...inorderTraversal(root.left), root.val, ... inorderTraversal(root.right)]
 };
 
 // Root - Left - Right
-function preorderTraversal(root: TreeNode | null): number[] {
+function postorderTraversal(root: TreeNode | null): number[] {
     if (root === null) return []
-    return [...preorderTraversal(root.left), ...preorderTraversal(root.right), root.val]
+    return [... postorderTraversal(root.left), ... postorderTraversal(root.right), root.val]
 };
 ```
